@@ -71,6 +71,7 @@ function CreateOrder() {
         </div>
 
         <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button>Order now</button>
         </div>
       </Form>
@@ -80,7 +81,8 @@ function CreateOrder() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  console.log(formData);
+  const data = Object.fromEntries(formData);
+  console.log(data);
   return null;
 }
 
