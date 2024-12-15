@@ -46,14 +46,24 @@ function CreateOrder() {
         <div>
           <label>First Name</label>
           <div>
-            <input type="text" name="customer" required />
+            <input
+              type="text"
+              name="customer"
+              required
+              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
+            />
           </div>
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input
+              type="tel"
+              name="phone"
+              required
+              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
+            />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -61,12 +71,18 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input
+              type="text"
+              name="address"
+              required
+              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
+            />
           </div>
         </div>
 
-        <div>
+        <div className="flex items-center gap-2">
           <input
+            className="my-3 h-5 w-5 accent-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400 focus:ring-offset-1"
             type="checkbox"
             name="priority"
             id="priority"
