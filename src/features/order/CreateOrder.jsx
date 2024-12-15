@@ -42,28 +42,18 @@ function CreateOrder() {
     <div className="flex flex-col items-center justify-center">
       <h2>Ready to order? Let's go!</h2>
 
-      <Form method="POST" className="py-4">
+      <Form method="POST" className="w-full py-4">
         <div>
           <label>First Name</label>
           <div>
-            <input
-              type="text"
-              name="customer"
-              required
-              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
-            />
+            <input type="text" name="customer" required className="input" />
           </div>
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input
-              type="tel"
-              name="phone"
-              required
-              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
-            />
+            <input type="tel" name="phone" required className="input" />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -71,12 +61,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input
-              type="text"
-              name="address"
-              required
-              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-yellow-400 md:px-6 md:py-3"
-            />
+            <input type="text" name="address" required className="input" />
           </div>
         </div>
 
