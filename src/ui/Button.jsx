@@ -8,3 +8,5 @@ function Button({ children, disabled }) {
     </button>
   );
 }
+
+export default Button;
