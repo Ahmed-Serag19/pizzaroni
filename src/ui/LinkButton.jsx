@@ -1,14 +1,13 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
-const LinkButton = ({ children, to }) => {
-  const className =
-    "text-sm text-blue-500 transition duration-300 hover:text-blue-700";
+function LinkButton({ children, to }) {
   const navigate = useNavigate();
-  if (to === "-1")
+  const className = 'text-sm text-blue-500 hover:text-blue-600 hover:underline';
+
+  if (to === '-1')
     return (
       <button className={className} onClick={() => navigate(-1)}>
-        &larr; Go back
+        {children}
       </button>
     );
 
@@ -17,6 +16,6 @@ const LinkButton = ({ children, to }) => {
       {children}
     </Link>
   );
-};
+}
 
 export default LinkButton;
