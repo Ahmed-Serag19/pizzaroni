@@ -36,37 +36,50 @@ function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const formErrors = useActionData();
+  // const formErrors = true;
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2>Ready to order? Let's go!</h2>
+    <div className="flex flex-col px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
 
       <Form method="POST" className="w-full py-4">
-        <div>
-          <label>First Name</label>
-          <div>
-            <input type="text" name="customer" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <div className="grow">
+            <input
+              type="text"
+              name="customer"
+              required
+              className="input w-full"
+            />
           </div>
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="input" />
-          </div>
-          {formErrors?.phone && <p>{formErrors.phone}</p>}
-        </div>
-
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input type="tel" name="phone" required className="input w-full" />
+            {formErrors?.phone && (
+              <p className="mt-2 text-xs text-red-700">{formErrors.phone}</p>
+            )}
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              type="text"
+              name="address"
+              required
+              className="input w-full"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-5">
           <input
             className="my-3 h-5 w-5 accent-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400 focus:ring-offset-1"
             type="checkbox"
@@ -75,12 +88,14 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority" className="font-medium">
+            Want to yo give your order priority?
+          </label>
         </div>
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button type="primary" disabled={isSubmitting}>
+          <Button type="small" disabled={isSubmitting}>
             {isSubmitting ? "Placing Order.." : "Order now"}
           </Button>
         </div>
@@ -92,18 +107,18 @@ function CreateOrder() {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  // const order = {
-  //   ...data,
-  //   cart: JSON.parse(data.cart),
-  //   priority: data.priority === "on",
-  // };
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "on",
+  };
 
-  // const errors = {};
-  // if (!isValidPhone(order.phone))
-  // errors.phone = "Please use correct phone number";
-  // if (Object.keys(errors).length > 0) return errors;
-  // const newOrder = await createOrder(order);
-  // return redirect(`/order/${newOrder.id}`);
+  const errors = {};
+  if (!isValidPhone(order.phone))
+    errors.phone = "Please use correct phone number";
+  if (Object.keys(errors).length > 0) return errors;
+  const newOrder = await createOrder(order);
+  return redirect(`/order/${newOrder.id}`);
   return null;
 }
 
