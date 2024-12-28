@@ -29,10 +29,10 @@ function Cart() {
   const cart = fakeCart;
 
   return (
-    <div>
+    <div className="px-4 py-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2>Your cart, %NAME%</h2>
+      <h2 className="text-cl mt-7 font-semibold">Your cart, %NAME%</h2>
 
       <div className="flex gap-5">
         <Button type="primary" to="/order/new">
